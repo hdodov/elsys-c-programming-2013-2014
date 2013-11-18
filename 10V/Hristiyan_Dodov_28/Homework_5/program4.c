@@ -23,16 +23,21 @@ int main (){
 			sum = 0;
 			break;
 		}
-		else if ((bnAmount[i]*bnValue[i])>sum){
+		else if ((bnAmount[i]*bnValue[i])>=sum){
 			bnUsed[i] = sum / bnValue[i];
 			sum = sum % bnValue[i];		
 		}
 		else {
-			bnUsed[i] = bnAmount[i];
-			sum = sum - (bnAmount[i]*bnValue[i]);
+			if (bnAmount[i]>1 & ((sum - bnAmount[i]*bnValue[i])<bnValue[bnNumber-1])) {
+				bnUsed[i] = bnAmount[i] - 1;
+				sum = sum - ((bnAmount[i]-1)*bnValue[i]);
+			} else {
+				bnUsed[i] = bnAmount[i];
+				sum = sum - (bnAmount[i]*bnValue[i]);
+			}
 		}
 	}
-	
+		
 	if (sum==0){
 		printf("Yes: ");
 		for (i=0; i<=bnNumber; i++) {
@@ -46,5 +51,4 @@ int main (){
 	}
 	
 	return 0;
-
 }
