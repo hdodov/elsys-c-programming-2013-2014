@@ -6,15 +6,24 @@ int main (){
 		bnAmount[bnNumber],
 		bnUsed[bnNumber],
 		bnValue[] = {1,2,5},
-		sum, i;
+		sum, sumOrigin, i, i2;
 		
 	for (i=0; i<=bnNumber; i++) {
 		scanf("%d", &bnAmount[i]);
 	}
-	scanf("%d", &sum);
+	scanf("%d", &sumOrigin);
+	sum = sumOrigin;
 	
 	for (i=bnNumber; i>=0; i--) {
-		if ((bnAmount[i]*bnValue[i])>sum){
+		if ((bnAmount[i]*bnValue[i])==sumOrigin){
+			for (i2=0; i2<=bnNumber; i2++) {
+				bnUsed[i2] = 0;
+			}
+			bnUsed[i] = bnAmount[i];
+			sum = 0;
+			break;
+		}
+		else if ((bnAmount[i]*bnValue[i])>sum){
 			bnUsed[i] = sum / bnValue[i];
 			sum = sum % bnValue[i];		
 		}
